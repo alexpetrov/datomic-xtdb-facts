@@ -19,7 +19,7 @@
 
 16 November 2022
 
-** /Факты/ про *Datomic*
+** /Факты/ про *Datomic* и *XTDB*
 
 #+ATTR_REVEAL: :frag roll-in
 *Факт №1*
