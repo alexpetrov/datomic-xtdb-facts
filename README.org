@@ -227,7 +227,9 @@ Architecture [[http://docs.datomic.com/architecture.html][Overview]]
 #+ATTR_REVEAL: :frag roll-in
 Syntactically it is a subset of *Prolog*
 
-** Query Example
+** Trivial Query Example
+
+Pets shelter database
 
 #+ATTR_REVEAL: :frag roll-in
 /Query/: /Owner names/ of /dog/ "Tiny"
@@ -241,7 +243,6 @@ Syntactically it is a subset of *Prolog*
 #+END_SRC
 
 Example from [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-datomic/][Conversations With Datomic]] article by Carin Meier
-
 
 * *Datomic* /Superpowers/
 
@@ -360,6 +361,9 @@ Or consider using *XTDB*
 
 * *Datomic* for non *Clojure*
 
+#+ATTR_REVEAL: :frag (appear)
+Even thogh *Clojure* language was created to build *Datomic*
+  
 #+ATTR_REVEAL: :frag (appear)
 *Datomic* supports all *JVM* languages
 
