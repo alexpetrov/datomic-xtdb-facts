@@ -258,8 +258,9 @@ Example from [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-d
 
 * *XTDB* /Superpowers/
 
-#+ATTR_REVEAL: :frag (appear)
 On top of Datomic superpowers XTDB has:
+
+#+ATTR_REVEAL: :frag (appear)
  * Bitemporal quieries on transaction time or valid time
  * Schema on read, schemaless on write
  * EDN database
