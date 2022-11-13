@@ -1,0 +1,437 @@
+#+STARTUP: showall
+
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
+#+OPTIONS: reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800 reveal_slide_number:c/t
+#+OPTIONS: toc:0
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: cube
+#+REVEAL_THEME: moon
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Факты про Datomic.">
+#+REVEAL_POSTAMBLE: <p> Created by Alexander Petrov (a.k.a Lysenko). </p>
+#+REVEAL_PLUGINS: (markdown notes)
+#+REVEAL_EXTRA_CSS: ./local.css
+
+* /Факты/ про *Datomic*
+
+Presentation For [[https://www.meetup.com/Moscow-Clojure-Script-Meetup/events/236838714/][Moscow Clojure/ClojureScript Meetup]]
+
+by [[https://twitter.com/alexpetrov_rb][@alexpetrov_rb]]
+
+25 February 2017
+
+** /Факты/ про *Datomic*
+
+#+ATTR_REVEAL: :frag roll-in
+*Факт №1*
+
+#+ATTR_REVEAL: :frag roll-in
+*Datomic* про /Факты/
+
+#+ATTR_REVEAL: :frag roll-in
+"И это есть /Факт/, Мусьё Дюк!"
+
+#+ATTR_REVEAL: :frag roll-in
+(c) Господин Смирнов. "/Неуловимые Мстители. Корона Российской Империи/"
+
+* About me
+
+#+ATTR_REVEAL: :frag roll-in
+*Alexander Petrov* (a.k.a Lysenko) [[https://twitter.com/alexpetrov_rb][@alexpetrov_rb]]
+
+#+ATTR_REVEAL: :frag roll-in
+Senior *Ruby* / *Rails* / *Erlang* Developer at [[http://fun-box.ru/][FunBox]]
+
+#+ATTR_REVEAL: :frag roll-in
+*2006 - 2014* Enterprise *Java* Developer
+
+#+ATTR_REVEAL: :frag roll-in
+Strategically Learn *Elixir*
+
+#+ATTR_REVEAL: :frag roll-in
+Love *Clojure*
+
+#+ATTR_REVEAL: :frag roll-in
+Pet project [[https://github.com/alexpetrov/kmg][Knowledge Media Guide]] on *Clojure*, *Datomic*, *Enlive*
+
+#+ATTR_REVEAL: :frag roll-in
+Recommendation of /Knowledge Media/ by /Specializaitons/
+
+* Modeling
+
+#+ATTR_REVEAL: :frag roll-in
+  What if we represent part of /the world/ being digitized as a set of /situations/?
+
+#+BEGIN_NOTES
+Что если моделировать /мир/ как набор /ситуаций/?
+#+END_NOTES
+
+#+ATTR_REVEAL: :frag roll-in
+  /Situation/ is a set of /facts/ that are consistent with each other as of particular /point in time/.
+
+#+BEGIN_NOTES
+/Ситуация/ - это набор /фактов/ согласованных друг с другом в конкретный /момент времени/.
+#+END_NOTES
+
+#+ATTR_REVEAL: :frag roll-in
+  We won't care about anything besides these /situations/.
+
+#+BEGIN_NOTES
+ В рамках моделируемой части /мира/ нас не будет интересовать ничего за пределами /ситуаций/.
+#+END_NOTES
+
+#+ATTR_REVEAL: :frag roll-in
+  Having a log of situations, we might replay /the world/ with a /tail recursion/ in a completely /functional fasion/.
+
+#+BEGIN_NOTES
+Имея журнал ситуаций, мы сможем проигрывать /мир/ функциональным образом проходя через все /ситуации/ хвостовой рекурсией.
+#+END_NOTES
+
+Source talk: [[https://www.youtube.com/watch?v=fhOHn9TClXY&feature=youtu.be&t=19m23s][Joe Armstrong Interviews Alan Kay]]
+
+#+BEGIN_NOTES
+Set of states in the world, that are consistent with each other at a particular time
+#+END_NOTES
+
+** History
+
+The /Idea/ of simulating /Time/ along With /Process/ and /States/ appeared in the paper:
+
+#+ATTR_REVEAL: :frag roll-in
+    *1963* /Jonh McCarthy/ [[http://www.dtic.mil/dtic/tr/fulltext/u2/785031.pdf][Situations, Actions and Causal Laws]]
+
+#+ATTR_REVEAL: :frag roll-in
+    *2012* /Rich Hickey/ implemented the idea in [[http://www.datomic.com/][Datomic]] database
+
+#+ATTR_REVEAL: :frag roll-in
+    *2012* /Stuart Halloway/ implemented [[https://github.com/Datomic/simulant/wiki][Simulant]] library to [[https://www.infoq.com/presentations/Simulation-Testing][simulation test]] *Datomic* based systems
+
+#+BEGIN_NOTES
+Datomic реализует хранение ситуаций в виде транзакций, а Simulant проигрывает эти ситуации имитируя время с разной скоростью.
+Это именно то о чём писал Джон МакКарти.
+Всё это делается, чтобы иметь рандомизированные повторяемые black box тесты системы.
+#+END_NOTES
+
+** *Facts* Example
+
+#+ATTR_REVEAL: :frag roll-in
+As of *1979* Great Guitar Player [[https://en.wikipedia.org/wiki/Robben_Ford][Robben Ford]] plays in /Yellowjackets/
+
+#+ATTR_REVEAL: :frag roll-in
+| Entity        | Attribute | Value             | Timestamp |
+|---------------+-----------+-------------------+-----------|
+| *Robben Ford* | Plays in  | "/Yellowjackets/" | *1979*    |
+
+#+ATTR_REVEAL: :frag roll-in
+Then as of *1986* he plays in /Miles Davis's Band/
+
+#+ATTR_REVEAL: :frag roll-in
+| Entity        | Attribute | Value                  | Timestamp |
+|---------------+-----------+------------------------+-----------|
+| *Robben Ford* | Plays in  | "/Miles Davis's Band/" | *1986*    |
+
+#+BEGIN_NOTES
+При этом вместе с ним в группе играли и другие музыканты и факты об этом истиннны в тот же момент времени.
+#+END_NOTES
+
+** Immutability
+
+#+ATTR_REVEAL: :frag roll-in
+Imagine [[https://en.wikipedia.org/wiki/General_ledger][General Ledger]]
+
+#+ATTR_REVEAL: :frag roll-in
+We save records on paper
+
+#+ATTR_REVEAL: :frag roll-in
+When situation changes we create *new* records
+
+#+ATTR_REVEAL: :frag roll-in
+We /NEVER/ /remove/ *old* records
+
+#+ATTR_REVEAL: :frag roll-in
+Lack of computer disc space made us use /Place/ oriented way of saving data
+
+#+ATTR_REVEAL: :frag roll-in
+Now these *space* *restrictions* are not relevant anymore
+
+** *Facts* vs *Places*
+
+Fred lives on "Spring St."
+
+*Place* oriented storage
+
+| Name | Street       |
+| fred | "Spring St." |
+
+** *Facts* vs *Places*
+
+*Place* oriented storage
+
+*fred* moves to "Maple St."
+
+| Name | Street         |
+| fred | +"Spring St."+ |
+
+#+ATTR_REVEAL: :frag roll-in
+Now we've lost information about Fred ever lived on "Spring St."
+
+** *Facts* vs *Places*
+
+*Place* oriented storage
+
+| Name | Street      |
+| fred | "Maple St." |
+
+#+ATTR_REVEAL: :frag roll-in
+*Facts* oriented storage
+
+#+ATTR_REVEAL: :frag roll-in
+| *fred* | :street | "Spring St." | *T15* |
+
+#+ATTR_REVEAL: :frag roll-in
+*fred* moves to "Maple St."
+
+#+ATTR_REVEAL: :frag roll-in
+| *fred* | :street | "Maple St." | *T36* |
+
+* /Simple/ Architecture
+
+#+BEGIN_SRC
++----------------------------------------------------------------------------+
+| +------------------------------------------------------------------------+ |
+| |                        Peer Application Process                        | |
+| +-------+--------------+-------------+------------------+----------------+ |
+|         |              ^             ^                  ^                  |
+|         |              |            D|                  |                  |
+|         |              |            a|                  |                  |
+|         |              |            t|                  |                  |
+|         V              |            a|                  |                  |
+| +-------+--------------+--------+    |    +-------------+----------------+ |
+| |          Transactor           |   S|    |       Memcached Cluster      | |
+| +--------------+----------------+   e|    +-------------+----------------+ |
+|                |                    g|                  ^                  |
+|                |                    m|                  |                  |
+|                |                    e|                  |                  |
+|                |                    t|                  |                  |
+|                V                    s|                  |                  |
+| +--------------+---------------------+------------------+----------------+ |
+| |          Storage Service (JDBC SQL || Cassandra || DynamoDB)           | |
+| +------------------------------------------------------------------------+ |
++----------------------------------------------------------------------------+
+#+END_SRC
+
+Architecture [[http://docs.datomic.com/architecture.html][Overview]]
+
+#+BEGIN_NOTES
+А иммутабельность позволяет радикально упростить архитекутру работы с данными
+#+END_NOTES
+
+* Declarative Logic Programming Language /Datalog/
+
+#+ATTR_REVEAL: :frag roll-in
+1977 [[http://en.wikipedia.org/wiki/Datalog][Datalog]] was created
+
+#+ATTR_REVEAL: :frag roll-in
+Syntactically it is a subset of *Prolog*
+
+** Query Example
+
+#+ATTR_REVEAL: :frag roll-in
+/Query/: /Owner names/ of /dog/ "Tiny"
+
+#+ATTR_REVEAL: :frag roll-in
+#+BEGIN_SRC clojure
+'[:find ?owner-name
+  :where [?dog   :dog/name   "Tiny"]
+         [?owner :owner/dogs ?dog]
+         [?owner :owner/name ?owner-name]]
+#+END_SRC
+
+Example from [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-datomic/][Conversations With Datomic]] article by Carin Meier
+
+* *Datalog* is /orthogonal/ to *facts* model
+
+#+ATTR_REVEAL: :frag roll-in
+*Datalog* is applicable for any /structured data/ processing.
+
+#+ATTR_REVEAL: :frag roll-in
+But *Datomic* uses *Datalog* to process /Facts/ (*Datoms*).
+
+#+ATTR_REVEAL: :frag roll-in
+If you don't need history and only need to make requests for application state you can use /Open Source/ *Datalog* implementation [[https://github.com/tonsky/datascript][DataScript]]
+
+** Some *DataScript* Use Cases
+
+#+ATTR_REVEAL: :frag roll-in
+For example, you can use *DataScript* to:
+
+#+ATTR_REVEAL: :frag (appear)
+ * Store and query /Single Page Application's/ /State/
+ * Statically generate site from /Knowledge Base/ on *DataScript*
+
+* *Datomic* /Superpowers/
+
+#+ATTR_REVEAL: :frag (appear)
+ * Query /consistent/ database value at /any moment/ in time
+ * Query /historic/ data
+ * Make /speculative/ *What If* queries
+ * Use /user defined functions/ and /rules/ in queries
+ * Use /user defined functions/ on *Transactor* for data integrity
+ * Listen to /all changes/ in the system and /react/
+ * Lookup /indexes/ directly for speed
+
+* /Incidental complexity/ sources
+
+#+ATTR_REVEAL: :frag (appear)
+   * Data /Persistence/
+   * Cache Invalidation
+   * *ETL* from *OLTP* to *OLAP*
+   * Integration
+   * *SPA* /Stateful/ Client
+   * *DB* related /Concurrency/
+   * Scaling writes and reads separately
+
+** /Disease/ -> *Datomic* /Treatment/
+
+#+ATTR_REVEAL: :frag roll-in
+| Impedance Mismatch              | -> [[http://docs.datomic.com/pull.html][Pull API]]               |
+| [[https://martinfowler.com/bliki/TwoHardThings.html][Cache Invalidation]]              | -> [[http://docs.datomic.com/architecture.html][Immutability]]           |
+| /DB/ related /Concurrency/      | -> [[http://augustl.com/blog/2016/datomic_the_most_innovative_db_youve_never_heard_of][Single Threaded Writes]] |
+| /ETL/ from /OLTP/ to /OLAP/     | -> [[http://docs.datomic.com/clojure/][as-of, since, history]]  |
+| Integration ( [[https://martinfowler.com/articles/microservices.html]["Microservices"]] ) | -> [[http://docs.datomic.com/project-setup.html][Client]], [[http://docs.datomic.com/rest.html][REST]], [[https://github.com/cognitect-labs/vase][Vase]]     |
+| /SPA/ Client /State Management/ | -> [[http://docs.datomic.com/rest.html][REST SSE]], [[https://github.com/tonsky/datascript][DataScript]]   |
+| [[https://www.infoq.com/presentations/Simulation-Testing][Simulation Testing]]              | -> [[https://github.com/Datomic/simulant][Simulant]]               |
+| Scaling writes/reads separately | -> [[https://docs.datomic.com/on-prem/architecture.html][Datomic Architecture]]   |
+
+#+ATTR_REVEAL: :frag roll-in
+/Datomic/ [[http://docs.datomic.com/rest.html][REST API]] works but considered legacy
+
+#+BEGIN_NOTES
+- Интеграция. Datomic REST API интеграция как с белым ящиком, в том числе реактивная
+Vase позволяет строить RESTful API полностью декларативно для данных в Datomic Интеграция как с "чёрным" ящиком
+https://github.com/cognitect-labs/vase
+https://github.com/cognitect-labs/vase/blob/master/docs/your_first_api.md
+
+-Concurrency. Multithreaded Databases тратят только 25% времени на запись и чтение данных. Остальное время они тратят на координацию паральных читателей и писателей.
+SingleThreaded Transactor всё время тратит на запись данных. Нет проблем Concurrency вообще.
+Он все приходящие на него транзакции кладёт в очередь и по одному вытаскивает и записывает.
+Причём если приходит слишком много Datom-ов он переходит в Throttling режим и работает медленнее.
+
+#+END_NOTES
+
+* Why is it worth investing
+
+** *Datomic* reflects the way you think of information
+
+#+ATTR_REVEAL: :frag (appear)
+That's why it is the best choice to implement your own ideas and projects.
+
+#+ATTR_REVEAL: :frag (appear)
+No incidental complexity, no restrictions, no crutches, no pain.
+
+#+ATTR_REVEAL: :frag (appear)
+In fact you have [[https://martinfowler.com/eaaDev/EventSourcing.html][Event Sourcing]] and [[https://martinfowler.com/bliki/CQRS.html][CQRS]] with no cost.
+
+#+ATTR_REVEAL: :frag (appear)
+[[https://martinfowler.com/eaaDev/EventSourcing.html][Event Sourcing]] pattern is just /a crutch/ for an outdated /place oriented/ data model.
+
+** *Datomic* saves all historic data
+
+#+ATTR_REVEAL: :frag (appear)
+If /data/ worth saving, all /historic data/ worth saving as well.
+
+#+ATTR_REVEAL: :frag (appear)
+You will do it anyway in *OLAP* database.
+
+#+ATTR_REVEAL: :frag (appear)
+[[http://docs.datomic.com/capacity.html][Capacity Planning]]
+
+** *Datomic* downloads hot dataset in memory
+
+#+ATTR_REVEAL: :frag (appear)
+Any business application downloads hot dataset in memory
+
+#+ATTR_REVEAL: :frag (appear)
+But *Datomic* doing it smarter, giving you a lot of benefits
+
+** *Datomic* is a proprietary software
+
+#+ATTR_REVEAL: :frag (appear)
+And always gonna [[https://soundcloud.com/defn-771544745/23-the-right-honourable-stuart-halloway][be closed source]]
+
+#+ATTR_REVEAL: :frag (appear)
+But it was developed by *Rich Hickey* and *Stuart Halloway*
+
+#+ATTR_REVEAL: :frag (appear)
+And it is totally [[http://www.datomic.com/get-datomic.html][free]] for one year of updates
+
+#+ATTR_REVEAL: :frag (appear)
+If you are using proprietary *DBs* for *OLTP*, *ETL* and *OLAP*
+
+#+ATTR_REVEAL: :frag (appear)
+You can [[http://www.datomic.com/get-datomic.html][afford]] using *Datomic*
+
+* *Datomic* for non *Clojure*
+
+#+ATTR_REVEAL: :frag (appear)
+*Datomic* supports all *JVM* languages
+
+#+ATTR_REVEAL: :frag (appear)
+Non *JVM* languages supported via *REST API*
+
+* Summary
+
+I want to inspire people to:
+
+#+ATTR_REVEAL: :frag (appear)
+ * Consider /ideas/ *Datomic* based on
+ * Learn *Datomic* and *Datalog*
+ * Use *Datomic* and *DataScript* for /pet projects/ and /production/
+ * Implement /Open Source/ *Datomic* for *JVM* and *Erlang BEAM*
+ * Develop *job market* without /incidental complexity/
+ * Quit tolerate unnecessary /incidental complexity/
+
+* Learn *Datomic*
+
+#+ATTR_REVEAL: :frag roll-in
+Videos from [[http://clojurecourse.by/][ClojureCourse.by]] by [[https://github.com/tonsky][Nikita Prokopov]]
+
+#+ATTR_REVEAL: :frag roll-in
+Interactive course [[http://www.learndatalogtoday.org/][Learn Datalog Today]]
+
+#+ATTR_REVEAL: :frag roll-in
+Articles by Carin Meyer [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-datomic/][Conversations With Datomic]]
+
+#+ATTR_REVEAL: :frag roll-in
+Great [[http://blog.datomic.com/][Datomic Blog]] and [[http://docs.datomic.com/tutorial.html][Documentation]]
+
+* Acknowledgments
+
+*Николай Рыжиков* - за знакомство с /Datomic/ и /Clojure/ [[https://plus.google.com/u/0/+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9%D0%A0%D1%8B%D0%B6%D0%B8%D0%BA%D0%BE%D0%B2/posts/br5A7HMEXY5][в 2013]], знакомство с [[https://github.com/hakimel/reveal.js/][Reveal.js]] и название доклада
+
+*Никита Прокопов* - за преподавание на [[http://clojurecourse.by/][ClojureCource.by]] в 2014 и /Open Source/ [[https://github.com/tonsky/datascript][DataScript]] и [[https://github.com/tonsky/rum][RUM]]
+
+*Сергей Ткаченко* - за [[https://www.meetup.com/Moscow-Clojure-Script-Meetup/][Moscow Clojure/CLJS Meetup]] и приглашение сделать доклад
+
+*Rich Hickey* - за [[https://clojure.org/][Clojure]] и [[http://www.datomic.com/][Datomic]]
+
+*Stuart Halloway* - За [[http://www.datomic.com/][Datomic]], [[https://github.com/Datomic/simulant][Simulant]] и мою первую прочитанную книгу по Clojure [[https://pragprog.com/book/shcloj2/programming-clojure][Programing Clojure]]
+
+[[https://www.gnu.org/software/emacs/][GNU Emacs]], [[http://orgmode.org/][Org Mode]], [[https://github.com/yjwen/org-reveal][Org-Reveal]], [[http://cinsk.github.io//emacs/emacs-artist.html][Artist Mode]], [[https://github.com/bbatsov/prelude][Prelude]]
+
+* Links
+
+[[https://soundcloud.com/defn-771544745/23-the-right-honourable-stuart-halloway][Defn Episode 23]] with *Stuart Halloway* about history of /Cognitect/ and /Datomic/ past and future
+
+[[http://blog.cognitect.com/cognicast/059-michael-nygard?rq=simulant][Cognicast Episode 059]] With *Michael Nygard* about /simulation testing/
+
+[[http://blog.cognitect.com/cognicast/101?rq=arachne][Cognicast Episode 101]] With *Luke Vanderhart* about /Arachne/ web framework wich uses /Dataomic/ in memory database for components configuration
+
+[[http://blog.cognitect.com/cognicast/118][Cognicast Episode 118]] with *Paul deGrandis* about /Vase/ data-driven /microservices/ library
+
+* Thanks
+
+* *Questions* and *Additions*

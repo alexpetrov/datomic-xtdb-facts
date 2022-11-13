@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title></title>
+<meta name="author" content="(alexpetrov)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/moon.css" id="theme"/>
+
+<link rel="stylesheet" href="./local.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="Факты про Datomic.">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">Факты Про Datomic
+</section>
+
+<section>
+<section id="slide-org8308a91">
+<h2 id="org8308a91"><i>Факты</i> про <b>Datomic</b></h2>
+<p>
+Presentation For <a href="https://www.meetup.com/Moscow-Clojure-Script-Meetup/events/236838714/">Moscow Clojure/ClojureScript Meetup</a>
+</p>
+
+<p>
+by <a href="https://twitter.com/alexpetrov_rb">@alexpetrov_rb</a>
+</p>
+
+<p>
+25 February 2017
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdf9462d">
+<h3 id="orgdf9462d"><i>Факты</i> про <b>Datomic</b></h3>
+<p class="fragment roll-in">
+<b>Факт №1</b>
+</p>
+
+<p class="fragment roll-in">
+<b>Datomic</b> про <i>Факты</i>
+</p>
+
+<p class="fragment roll-in">
+"И это есть <i>Факт</i>, Мусьё Дюк!"
+</p>
+
+<p class="fragment roll-in">
+(c) Господин Смирнов. "<i>Неуловимые Мстители. Корона Российской Империи</i>"
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org4bbb182">
+<h2 id="org4bbb182">About me</h2>
+<p class="fragment roll-in">
+<b>Alexander Petrov</b> (a.k.a Lysenko) <a href="https://twitter.com/alexpetrov_rb" class="fragment roll-in">@alexpetrov_rb</a>
+</p>
+
+<p class="fragment roll-in">
+Senior <b>Ruby</b> / <b>Rails</b> / <b>Erlang</b> Developer at <a href="http://fun-box.ru/" class="fragment roll-in">FunBox</a>
+</p>
+
+<p class="fragment roll-in">
+<b>2006 - 2014</b> Enterprise <b>Java</b> Developer
+</p>
+
+<p class="fragment roll-in">
+Strategically Learn <b>Elixir</b>
+</p>
+
+<p class="fragment roll-in">
+Love <b>Clojure</b>
+</p>
+
+<p class="fragment roll-in">
+Pet project <a href="https://github.com/alexpetrov/kmg" class="fragment roll-in">Knowledge Media Guide</a> on <b>Clojure</b>, <b>Datomic</b>, <b>Enlive</b>
+</p>
+
+<p class="fragment roll-in">
+Recommendation of <i>Knowledge Media</i> by <i>Specializaitons</i>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd6fa980">
+<h2 id="orgd6fa980">Modeling</h2>
+<p class="fragment roll-in">
+What if we represent part of <i>the world</i> being digitized as a set of <i>situations</i>?
+</p>
+
+<aside class="notes">
+<p>
+Что если моделировать <i>мир</i> как набор <i>ситуаций</i>?
+</p>
+
+</aside>
+
+<p class="fragment roll-in">
+<i>Situation</i> is a set of <i>facts</i> that are consistent with each other as of particular <i>point in time</i>.
+</p>
+
+<aside class="notes">
+<p>
+<i>Ситуация</i> - это набор <i>фактов</i> согласованных друг с другом в конкретный <i>момент времени</i>.
+</p>
+
+</aside>
+
+<p class="fragment roll-in">
+We won't care about anything besides these <i>situations</i>.
+</p>
+
+<aside class="notes">
+<p>
+В рамках моделируемой части <i>мира</i> нас не будет интересовать ничего за пределами <i>ситуаций</i>.
+</p>
+
+</aside>
+
+<p class="fragment roll-in">
+Having a log of situations, we might replay <i>the world</i> with a <i>tail recursion</i> in a completely <i>functional fasion</i>.
+</p>
+
+<aside class="notes">
+<p>
+Имея журнал ситуаций, мы сможем проигрывать <i>мир</i> функциональным образом проходя через все <i>ситуации</i> хвостовой рекурсией.
+</p>
+
+</aside>
+
+<p>
+Source talk: <a href="https://www.youtube.com/watch?v=fhOHn9TClXY&amp;feature=youtu.be&amp;t=19m23s">Joe Armstrong Interviews Alan Kay</a>
+</p>
+
+<aside class="notes">
+<p>
+Set of states in the world, that are consistent with each other at a particular time
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org7b9b6dc">
+<h3 id="org7b9b6dc">History</h3>
+<p>
+The <i>Idea</i> of simulating <i>Time</i> along With <i>Process</i> and <i>States</i> appeared in the paper:
+</p>
+
+<p class="fragment roll-in">
+<b>1963</b> <i>Jonh McCarthy</i> <a href="http://www.dtic.mil/dtic/tr/fulltext/u2/785031.pdf" class="fragment roll-in">Situations, Actions and Causal Laws</a>
+</p>
+
+<p class="fragment roll-in">
+<b>2012</b> <i>Rich Hickey</i> implemented the idea in <a href="http://www.datomic.com/" class="fragment roll-in">Datomic</a> database
+</p>
+
+<p class="fragment roll-in">
+<b>2012</b> <i>Stuart Halloway</i> implemented <a href="https://github.com/Datomic/simulant/wiki" class="fragment roll-in">Simulant</a> library to <a href="https://www.infoq.com/presentations/Simulation-Testing">simulation test</a> <b>Datomic</b> based systems
+</p>
+
+<aside class="notes">
+<p>
+Datomic реализует хранение ситуаций в виде транзакций, а Simulant проигрывает эти ситуации имитируя время с разной скоростью.
+Это именно то о чём писал Джон МакКарти.
+Всё это делается, чтобы иметь рандомизированные повторяемые black box тесты системы.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org46c7741">
+<h3 id="org46c7741"><b>Facts</b> Example</h3>
+<p class="fragment roll-in">
+As of <b>1979</b> Great Guitar Player <a href="https://en.wikipedia.org/wiki/Robben_Ford" class="fragment roll-in">Robben Ford</a> plays in <i>Yellowjackets</i>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="fragment roll-in">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Entity</th>
+<th scope="col" class="org-left">Attribute</th>
+<th scope="col" class="org-left">Value</th>
+<th scope="col" class="org-left">Timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><b>Robben Ford</b></td>
+<td class="org-left">Plays in</td>
+<td class="org-left">"<i>Yellowjackets</i>"</td>
+<td class="org-left"><b>1979</b></td>
+</tr>
+</tbody>
+</table>
+
+<p class="fragment roll-in">
+Then as of <b>1986</b> he plays in <i>Miles Davis's Band</i>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="fragment roll-in">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Entity</th>
+<th scope="col" class="org-left">Attribute</th>
+<th scope="col" class="org-left">Value</th>
+<th scope="col" class="org-left">Timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><b>Robben Ford</b></td>
+<td class="org-left">Plays in</td>
+<td class="org-left">"<i>Miles Davis's Band</i>"</td>
+<td class="org-left"><b>1986</b></td>
+</tr>
+</tbody>
+</table>
+
+<aside class="notes">
+<p>
+При этом вместе с ним в группе играли и другие музыканты и факты об этом истиннны в тот же момент времени.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9463e5d">
+<h3 id="org9463e5d">Immutability</h3>
+<p class="fragment roll-in">
+Imagine <a href="https://en.wikipedia.org/wiki/General_ledger" class="fragment roll-in">General Ledger</a>
+</p>
+
+<p class="fragment roll-in">
+We save records on paper
+</p>
+
+<p class="fragment roll-in">
+When situation changes we create <b>new</b> records
+</p>
+
+<p class="fragment roll-in">
+We <i>NEVER</i> <i>remove</i> <b>old</b> records
+</p>
+
+<p class="fragment roll-in">
+Lack of computer disc space made us use <i>Place</i> oriented way of saving data
+</p>
+
+<p class="fragment roll-in">
+Now these <b>space</b> <b>restrictions</b> are not relevant anymore
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org14a38b0">
+<h3 id="org14a38b0"><b>Facts</b> vs <b>Places</b></h3>
+<p>
+Fred lives on "Spring St."
+</p>
+
+<p>
+<b>Place</b> oriented storage
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Name</td>
+<td class="org-left">Street</td>
+</tr>
+
+<tr>
+<td class="org-left">fred</td>
+<td class="org-left">"Spring St."</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+</section>
+<section>
+<section id="slide-org2d857d4">
+<h3 id="org2d857d4"><b>Facts</b> vs <b>Places</b></h3>
+<p>
+<b>Place</b> oriented storage
+</p>
+
+<p>
+<b>fred</b> moves to "Maple St."
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Name</td>
+<td class="org-left">Street</td>
+</tr>
+
+<tr>
+<td class="org-left">fred</td>
+<td class="org-left"><del>"Spring St."</del></td>
+</tr>
+</tbody>
+</table>
+
+<p class="fragment roll-in">
+Now we've lost information about Fred ever lived on "Spring St."
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org9cc464b">
+<h3 id="org9cc464b"><b>Facts</b> vs <b>Places</b></h3>
+<p>
+<b>Place</b> oriented storage
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Name</td>
+<td class="org-left">Street</td>
+</tr>
+
+<tr>
+<td class="org-left">fred</td>
+<td class="org-left">"Maple St."</td>
+</tr>
+</tbody>
+</table>
+
+<p class="fragment roll-in">
+<b>Facts</b> oriented storage
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="fragment roll-in">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>fred</b></td>
+<td class="org-left">:street</td>
+<td class="org-left">"Spring St."</td>
+<td class="org-left"><b>T15</b></td>
+</tr>
+</tbody>
+</table>
+
+<p class="fragment roll-in">
+<b>fred</b> moves to "Maple St."
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="fragment roll-in">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>fred</b></td>
+<td class="org-left">:street</td>
+<td class="org-left">"Maple St."</td>
+<td class="org-left"><b>T36</b></td>
+</tr>
+</tbody>
+</table>
+
+</section>
+</section>
+<section>
+<section id="slide-orge6c4a36">
+<h2 id="orge6c4a36"><i>Simple</i> Architecture</h2>
+<pre  class="example">
++----------------------------------------------------------------------------+
+| +------------------------------------------------------------------------+ |
+| |                        Peer Application Process                        | |
+| +-------+--------------+-------------+------------------+----------------+ |
+|         |              ^             ^                  ^                  |
+|         |              |            D|                  |                  |
+|         |              |            a|                  |                  |
+|         |              |            t|                  |                  |
+|         V              |            a|                  |                  |
+| +-------+--------------+--------+    |    +-------------+----------------+ |
+| |          Transactor           |   S|    |       Memcached Cluster      | |
+| +--------------+----------------+   e|    +-------------+----------------+ |
+|                |                    g|                  ^                  |
+|                |                    m|                  |                  |
+|                |                    e|                  |                  |
+|                |                    t|                  |                  |
+|                V                    s|                  |                  |
+| +--------------+---------------------+------------------+----------------+ |
+| |          Storage Service (JDBC SQL || Cassandra || DynamoDB)           | |
+| +------------------------------------------------------------------------+ |
++----------------------------------------------------------------------------+
+</pre>
+
+<p>
+Architecture <a href="http://docs.datomic.com/architecture.html">Overview</a>
+</p>
+
+<aside class="notes">
+<p>
+А иммутабельность позволяет радикально упростить архитекутру работы с данными
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9c39f3d">
+<h2 id="org9c39f3d">Declarative Logic Programming Language <i>Datalog</i></h2>
+<p class="fragment roll-in">
+1977 <a href="http://en.wikipedia.org/wiki/Datalog" class="fragment roll-in">Datalog</a> was created
+</p>
+
+<p class="fragment roll-in">
+Syntactically it is a subset of <b>Prolog</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org9ae93c1">
+<h3 id="org9ae93c1">Query Example</h3>
+<p class="fragment roll-in">
+<i>Query</i>: <i>Owner names</i> of <i>dog</i> "Tiny"
+</p>
+
+<div class="org-src-container">
+
+<pre  class="fragment roll-in">'<span style="color: #DCDCCC;">[</span><span style="color: #BFEBBF;">:find</span> ?owner-name
+  <span style="color: #BFEBBF;">:where</span> <span style="color: #BFEBBF;">[</span>?dog   <span style="color: #BFEBBF;">:dog/name</span>   <span style="color: #CC9393;">"Tiny"</span><span style="color: #BFEBBF;">]</span>
+         <span style="color: #BFEBBF;">[</span>?owner <span style="color: #BFEBBF;">:owner/dogs</span> ?dog<span style="color: #BFEBBF;">]</span>
+         <span style="color: #BFEBBF;">[</span>?owner <span style="color: #BFEBBF;">:owner/name</span> ?owner-name<span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">]</span>
+</pre>
+</div>
+
+<p>
+Example from <a href="http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-datomic/">Conversations With Datomic</a> article by Carin Meier
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org2a468b4">
+<h2 id="org2a468b4"><b>Datalog</b> is <i>orthogonal</i> to <b>facts</b> model</h2>
+<p class="fragment roll-in">
+<b>Datalog</b> is applicable for any <i>structured data</i> processing.
+</p>
+
+<p class="fragment roll-in">
+But <b>Datomic</b> uses <b>Datalog</b> to process <i>Facts</i> (<b>Datoms</b>).
+</p>
+
+<p class="fragment roll-in">
+If you don't need history and only need to make requests for application state you can use <i>Open Source</i> <b>Datalog</b> implementation <a href="https://github.com/tonsky/datascript" class="fragment roll-in">DataScript</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org4e39ce2">
+<h3 id="org4e39ce2">Some <b>DataScript</b> Use Cases</h3>
+<p class="fragment roll-in">
+For example, you can use <b>DataScript</b> to:
+</p>
+
+<ul>
+<li class="fragment appear">Store and query <i>Single Page Application's</i> <i>State</i></li>
+<li class="fragment appear">Statically generate site from <i>Knowledge Base</i> on <b>DataScript</b></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org82ec3af">
+<h2 id="org82ec3af"><b>Datomic</b> <i>Superpowers</i></h2>
+<ul>
+<li class="fragment appear">Query <i>consistent</i> database value at <i>any moment</i> in time</li>
+<li class="fragment appear">Query <i>historic</i> data</li>
+<li class="fragment appear">Make <i>speculative</i> <b>What If</b> queries</li>
+<li class="fragment appear">Use <i>user defined functions</i> and <i>rules</i> in queries</li>
+<li class="fragment appear">Use <i>user defined functions</i> on <b>Transactor</b> for data integrity</li>
+<li class="fragment appear">Listen to <i>all changes</i> in the system and <i>react</i></li>
+<li class="fragment appear">Lookup <i>indexes</i> directly for speed</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org3687137">
+<h2 id="org3687137"><i>Incidental complexity</i> sources</h2>
+<ul>
+<li class="fragment appear">Data <i>Persistence</i></li>
+<li class="fragment appear">Cache Invalidation</li>
+<li class="fragment appear"><b>ETL</b> from <b>OLTP</b> to <b>OLAP</b></li>
+<li class="fragment appear">Integration</li>
+<li class="fragment appear"><b>SPA</b> <i>Stateful</i> Client</li>
+<li class="fragment appear"><b>DB</b> related <i>Concurrency</i></li>
+<li class="fragment appear">Scaling writes and reads separately</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org10d7cc4">
+<h3 id="org10d7cc4"><i>Disease</i> -&gt; <b>Datomic</b> <i>Treatment</i></h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="fragment roll-in">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Impedance Mismatch</td>
+<td class="org-left">-&gt; <a href="http://docs.datomic.com/pull.html">Pull API</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://martinfowler.com/bliki/TwoHardThings.html">Cache Invalidation</a></td>
+<td class="org-left">-&gt; <a href="http://docs.datomic.com/architecture.html">Immutability</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><i>DB</i> related <i>Concurrency</i></td>
+<td class="org-left">-&gt; <a href="http://augustl.com/blog/2016/datomic_the_most_innovative_db_youve_never_heard_of">Single Threaded Writes</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><i>ETL</i> from <i>OLTP</i> to <i>OLAP</i></td>
+<td class="org-left">-&gt; <a href="http://docs.datomic.com/clojure/">as-of, since, history</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Integration ( <a href="https://martinfowler.com/articles/microservices.html">"Microservices"</a> )</td>
+<td class="org-left">-&gt; <a href="http://docs.datomic.com/project-setup.html">Client</a>, <a href="http://docs.datomic.com/rest.html">REST</a>, <a href="https://github.com/cognitect-labs/vase">Vase</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><i>SPA</i> Client <i>State Management</i></td>
+<td class="org-left">-&gt; <a href="http://docs.datomic.com/rest.html">REST SSE</a>, <a href="https://github.com/tonsky/datascript">DataScript</a></td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.infoq.com/presentations/Simulation-Testing">Simulation Testing</a></td>
+<td class="org-left">-&gt; <a href="https://github.com/Datomic/simulant">Simulant</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Scaling writes/reads separately</td>
+<td class="org-left">-&gt; <a href="https://docs.datomic.com/on-prem/architecture.html">Datomic Architecture</a></td>
+</tr>
+</tbody>
+</table>
+
+<p class="fragment roll-in">
+<i>Datomic</i> <a href="http://docs.datomic.com/rest.html" class="fragment roll-in">REST API</a> works but considered legacy
+</p>
+
+<aside class="notes">
+<ul>
+<li>Интеграция. Datomic REST API интеграция как с белым ящиком, в том числе реактивная</li>
+
+</ul>
+<p>
+Vase позволяет строить RESTful API полностью декларативно для данных в Datomic Интеграция как с "чёрным" ящиком
+<a href="https://github.com/cognitect-labs/vase">https://github.com/cognitect-labs/vase</a>
+<a href="https://github.com/cognitect-labs/vase/blob/master/docs/your_first_api.md">https://github.com/cognitect-labs/vase/blob/master/docs/your_first_api.md</a>
+</p>
+
+<p>
+-Concurrency. Multithreaded Databases тратят только 25% времени на запись и чтение данных. Остальное время они тратят на координацию паральных читателей и писателей.
+SingleThreaded Transactor всё время тратит на запись данных. Нет проблем Concurrency вообще.
+Он все приходящие на него транзакции кладёт в очередь и по одному вытаскивает и записывает.
+Причём если приходит слишком много Datom-ов он переходит в Throttling режим и работает медленнее.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org11794cb">
+<h2 id="org11794cb">Why is it worth investing</h2>
+<div class="outline-text-2" id="text-org11794cb">
+</div></section>
+</section>
+<section>
+<section id="slide-orgd38bbed">
+<h3 id="orgd38bbed"><b>Datomic</b> reflects the way you think of information</h3>
+<p class="fragment (appear)">
+That's why it is the best choice to implement your own ideas and projects.
+</p>
+
+<p class="fragment (appear)">
+No incidental complexity, no restrictions, no crutches, no pain.
+</p>
+
+<p class="fragment (appear)">
+In fact you have <a href="https://martinfowler.com/eaaDev/EventSourcing.html" class="fragment (appear)">Event Sourcing</a> and <a href="https://martinfowler.com/bliki/CQRS.html">CQRS</a> with no cost.
+</p>
+
+<p class="fragment (appear)">
+<a href="https://martinfowler.com/eaaDev/EventSourcing.html" class="fragment (appear)">Event Sourcing</a> pattern is just <i>a crutch</i> for an outdated <i>place oriented</i> data model.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org9239ca4">
+<h3 id="org9239ca4"><b>Datomic</b> saves all historic data</h3>
+<p class="fragment (appear)">
+If <i>data</i> worth saving, all <i>historic data</i> worth saving as well.
+</p>
+
+<p class="fragment (appear)">
+You will do it anyway in <b>OLAP</b> database.
+</p>
+
+<p class="fragment (appear)">
+<a href="http://docs.datomic.com/capacity.html" class="fragment (appear)">Capacity Planning</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org5332910">
+<h3 id="org5332910"><b>Datomic</b> downloads hot dataset in memory</h3>
+<p class="fragment (appear)">
+Any business application downloads hot dataset in memory
+</p>
+
+<p class="fragment (appear)">
+But <b>Datomic</b> doing it smarter, giving you a lot of benefits
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc2c11fc">
+<h3 id="orgc2c11fc"><b>Datomic</b> is a proprietary software</h3>
+<p class="fragment (appear)">
+And always gonna <a href="https://soundcloud.com/defn-771544745/23-the-right-honourable-stuart-halloway" class="fragment (appear)">be closed source</a>
+</p>
+
+<p class="fragment (appear)">
+But it was developed by <b>Rich Hickey</b> and <b>Stuart Halloway</b>
+</p>
+
+<p class="fragment (appear)">
+And it is totally <a href="http://www.datomic.com/get-datomic.html" class="fragment (appear)">free</a> for one year of updates
+</p>
+
+<p class="fragment (appear)">
+If you are using proprietary <b>DBs</b> for <b>OLTP</b>, <b>ETL</b> and <b>OLAP</b>
+</p>
+
+<p class="fragment (appear)">
+You can <a href="http://www.datomic.com/get-datomic.html" class="fragment (appear)">afford</a> using <b>Datomic</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org5e61f33">
+<h2 id="org5e61f33"><b>Datomic</b> for non <b>Clojure</b></h2>
+<p class="fragment (appear)">
+<b>Datomic</b> supports all <b>JVM</b> languages
+</p>
+
+<p class="fragment (appear)">
+Non <b>JVM</b> languages supported via <b>REST API</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org9b3c3c6">
+<h2 id="org9b3c3c6">Summary</h2>
+<p>
+I want to inspire people to:
+</p>
+
+<ul>
+<li class="fragment appear">Consider <i>ideas</i> <b>Datomic</b> based on</li>
+<li class="fragment appear">Learn <b>Datomic</b> and <b>Datalog</b></li>
+<li class="fragment appear">Use <b>Datomic</b> and <b>DataScript</b> for <i>pet projects</i> and <i>production</i></li>
+<li class="fragment appear">Implement <i>Open Source</i> <b>Datomic</b> for <b>JVM</b> and <b>Erlang BEAM</b></li>
+<li class="fragment appear">Develop <b>job market</b> without <i>incidental complexity</i></li>
+<li class="fragment appear">Quit tolerate unnecessary <i>incidental complexity</i></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbe1ebed">
+<h2 id="orgbe1ebed">Learn <b>Datomic</b></h2>
+<p class="fragment roll-in">
+Videos from <a href="http://clojurecourse.by/" class="fragment roll-in">ClojureCourse.by</a> by <a href="https://github.com/tonsky">Nikita Prokopov</a>
+</p>
+
+<p class="fragment roll-in">
+Interactive course <a href="http://www.learndatalogtoday.org/" class="fragment roll-in">Learn Datalog Today</a>
+</p>
+
+<p class="fragment roll-in">
+Articles by Carin Meyer <a href="http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-datomic/" class="fragment roll-in">Conversations With Datomic</a>
+</p>
+
+<p class="fragment roll-in">
+Great <a href="http://blog.datomic.com/" class="fragment roll-in">Datomic Blog</a> and <a href="http://docs.datomic.com/tutorial.html">Documentation</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc4b1996">
+<h2 id="orgc4b1996">Acknowledgments</h2>
+<p>
+<b>Николай Рыжиков</b> - за знакомство с <i>Datomic</i> и <i>Clojure</i> <a href="https://plus.google.com/u/0/+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9%D0%A0%D1%8B%D0%B6%D0%B8%D0%BA%D0%BE%D0%B2/posts/br5A7HMEXY5">в 2013</a>, знакомство с <a href="https://github.com/hakimel/reveal.js/">Reveal.js</a> и название доклада
+</p>
+
+<p>
+<b>Никита Прокопов</b> - за преподавание на <a href="http://clojurecourse.by/">ClojureCource.by</a> в 2014 и <i>Open Source</i> <a href="https://github.com/tonsky/datascript">DataScript</a> и <a href="https://github.com/tonsky/rum">RUM</a>
+</p>
+
+<p>
+<b>Сергей Ткаченко</b> - за <a href="https://www.meetup.com/Moscow-Clojure-Script-Meetup/">Moscow Clojure/CLJS Meetup</a> и приглашение сделать доклад
+</p>
+
+<p>
+<b>Rich Hickey</b> - за <a href="https://clojure.org/">Clojure</a> и <a href="http://www.datomic.com/">Datomic</a>
+</p>
+
+<p>
+<b>Stuart Halloway</b> - За <a href="http://www.datomic.com/">Datomic</a>, <a href="https://github.com/Datomic/simulant">Simulant</a> и мою первую прочитанную книгу по Clojure <a href="https://pragprog.com/book/shcloj2/programming-clojure">Programing Clojure</a>
+</p>
+
+<p>
+<a href="https://www.gnu.org/software/emacs/">GNU Emacs</a>, <a href="http://orgmode.org/">Org Mode</a>, <a href="https://github.com/yjwen/org-reveal">Org-Reveal</a>, <a href="http://cinsk.github.io//emacs/emacs-artist.html">Artist Mode</a>, <a href="https://github.com/bbatsov/prelude">Prelude</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org162ae05">
+<h2 id="org162ae05">Links</h2>
+<p>
+<a href="https://soundcloud.com/defn-771544745/23-the-right-honourable-stuart-halloway">Defn Episode 23</a> with <b>Stuart Halloway</b> about history of <i>Cognitect</i> and <i>Datomic</i> past and future
+</p>
+
+<p>
+<a href="http://blog.cognitect.com/cognicast/059-michael-nygard?rq=simulant">Cognicast Episode 059</a> With <b>Michael Nygard</b> about <i>simulation testing</i>
+</p>
+
+<p>
+<a href="http://blog.cognitect.com/cognicast/101?rq=arachne">Cognicast Episode 101</a> With <b>Luke Vanderhart</b> about <i>Arachne</i> web framework wich uses <i>Dataomic</i> in memory database for components configuration
+</p>
+
+<p>
+<a href="http://blog.cognitect.com/cognicast/118">Cognicast Episode 118</a> with <b>Paul deGrandis</b> about <i>Vase</i> data-driven <i>microservices</i> library
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org9897aee">
+<h2 id="org9897aee">Thanks</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-org740073b">
+<h2 id="org740073b"><b>Questions</b> and <b>Additions</b></h2>
+</section>
+</section>
+</div>
+</div>
+<p> Created by Alexander Petrov (a.k.a Lysenko). </p>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c/t',
+rollingLinks: true,
+keyboard: true,
+overview: true,
+width: 1200,
+height: 800,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
