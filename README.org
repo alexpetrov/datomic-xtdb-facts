@@ -15,13 +15,9 @@
 #+REVEAL_PLUGINS: (markdown notes)
 #+REVEAL_EXTRA_CSS: ./local.css
 
-* /Факты/ про *Datomic*
+* /Факты/ про *Datomic* и *XTDB*
 
-Presentation For [[https://www.meetup.com/Moscow-Clojure-Script-Meetup/events/236838714/][Moscow Clojure/ClojureScript Meetup]]
-
-by [[https://twitter.com/alexpetrov_rb][@alexpetrov_rb]]
-
-25 February 2017
+16 November 2022
 
 ** /Факты/ про *Datomic*
 
@@ -29,7 +25,7 @@ by [[https://twitter.com/alexpetrov_rb][@alexpetrov_rb]]
 *Факт №1*
 
 #+ATTR_REVEAL: :frag roll-in
-*Datomic* про /Факты/
+*Datomic* (и *XTDB*) про /Факты/
 
 #+ATTR_REVEAL: :frag roll-in
 "И это есть /Факт/, Мусьё Дюк!"
@@ -40,25 +36,19 @@ by [[https://twitter.com/alexpetrov_rb][@alexpetrov_rb]]
 * About me
 
 #+ATTR_REVEAL: :frag roll-in
-*Alexander Petrov* (a.k.a Lysenko) [[https://twitter.com/alexpetrov_rb][@alexpetrov_rb]]
+*Alexander Petrov* (a.k.a Lysenko)
 
 #+ATTR_REVEAL: :frag roll-in
-Senior *Ruby* / *Rails* / *Erlang* Developer at [[http://fun-box.ru/][FunBox]]
+*Pragmatic Programmer* | *Sing, Play Sax & Guitar* | *#Emacs #Clojure #Datomic #DDD #TDD #CleanArchitecture*
 
 #+ATTR_REVEAL: :frag roll-in
-*2006 - 2014* Enterprise *Java* Developer
+/Старший разработчик Clojure/ Центра продуктов Дозор в Ростелеком Солар
 
 #+ATTR_REVEAL: :frag roll-in
-Strategically Learn *Elixir*
+*2015 - 2022* /Старший разработчик Ruby / Rails / Erlang/ в FunBox
 
 #+ATTR_REVEAL: :frag roll-in
-Love *Clojure*
-
-#+ATTR_REVEAL: :frag roll-in
-Pet project [[https://github.com/alexpetrov/kmg][Knowledge Media Guide]] on *Clojure*, *Datomic*, *Enlive*
-
-#+ATTR_REVEAL: :frag roll-in
-Recommendation of /Knowledge Media/ by /Specializaitons/
+*2006 - 2014* /Enterprise Java Developer / Trainer / Architect / Team Leader / Lecturer/
 
 * Modeling
 
@@ -252,25 +242,6 @@ Syntactically it is a subset of *Prolog*
 
 Example from [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-datomic/][Conversations With Datomic]] article by Carin Meier
 
-* *Datalog* is /orthogonal/ to *facts* model
-
-#+ATTR_REVEAL: :frag roll-in
-*Datalog* is applicable for any /structured data/ processing.
-
-#+ATTR_REVEAL: :frag roll-in
-But *Datomic* uses *Datalog* to process /Facts/ (*Datoms*).
-
-#+ATTR_REVEAL: :frag roll-in
-If you don't need history and only need to make requests for application state you can use /Open Source/ *Datalog* implementation [[https://github.com/tonsky/datascript][DataScript]]
-
-** Some *DataScript* Use Cases
-
-#+ATTR_REVEAL: :frag roll-in
-For example, you can use *DataScript* to:
-
-#+ATTR_REVEAL: :frag (appear)
- * Store and query /Single Page Application's/ /State/
- * Statically generate site from /Knowledge Base/ on *DataScript*
 
 * *Datomic* /Superpowers/
 
@@ -282,14 +253,24 @@ For example, you can use *DataScript* to:
  * Use /user defined functions/ on *Transactor* for data integrity
  * Listen to /all changes/ in the system and /react/
  * Lookup /indexes/ directly for speed
+ * Graph database
 
+* *XTDB* /Superpowers/
+
+#+ATTR_REVEAL: :frag (appear)
+On top of Datomic superpowers XTDB has:
+ * Bitemporal quieries on transaction time or valid time
+ * Schema on read, schemaless on write
+ * EDN database
+ * Open Source (MIT Licenced)
+  
 * /Incidental complexity/ sources
 
 #+ATTR_REVEAL: :frag (appear)
    * Data /Persistence/
    * Cache Invalidation
    * *ETL* from *OLTP* to *OLAP*
-   * Integration
+   * Integration (Not so much  you can do about that)
    * *SPA* /Stateful/ Client
    * *DB* related /Concurrency/
    * Scaling writes and reads separately
@@ -315,7 +296,7 @@ Vase позволяет строить RESTful API полностью декла
 https://github.com/cognitect-labs/vase
 https://github.com/cognitect-labs/vase/blob/master/docs/your_first_api.md
 
--Concurrency. Multithreaded Databases тратят только 25% времени на запись и чтение данных. Остальное время они тратят на координацию паральных читателей и писателей.
+- Concurrency. Multithreaded Databases тратят только 25% времени на запись и чтение данных. Остальное время они тратят на координацию паральных читателей и писателей.
 SingleThreaded Transactor всё время тратит на запись данных. Нет проблем Concurrency вообще.
 Он все приходящие на него транзакции кладёт в очередь и по одному вытаскивает и записывает.
 Причём если приходит слишком много Datom-ов он переходит в Throttling режим и работает медленнее.
@@ -374,6 +355,9 @@ If you are using proprietary *DBs* for *OLTP*, *ETL* and *OLAP*
 #+ATTR_REVEAL: :frag (appear)
 You can [[http://www.datomic.com/get-datomic.html][afford]] using *Datomic*
 
+#+ATTR_REVEAL: :frag (appear)
+Or consider using *XTDB*
+
 * *Datomic* for non *Clojure*
 
 #+ATTR_REVEAL: :frag (appear)
@@ -382,16 +366,35 @@ You can [[http://www.datomic.com/get-datomic.html][afford]] using *Datomic*
 #+ATTR_REVEAL: :frag (appear)
 Non *JVM* languages supported via *REST API*
 
+* *Datalog* is /orthogonal/ to *facts* model
+
+#+ATTR_REVEAL: :frag roll-in
+*Datalog* is applicable for any /structured data/ processing.
+
+#+ATTR_REVEAL: :frag roll-in
+But *Datomic* uses *Datalog* to process /Facts/ (*Datoms*).
+
+#+ATTR_REVEAL: :frag roll-in
+If you don't need history and only need to make requests for application state you can use /Open Source/ *Datalog* implementation [[https://github.com/tonsky/datascript][DataScript]]
+
+** Some *DataScript* Use Cases
+
+#+ATTR_REVEAL: :frag roll-in
+For example, you can use *DataScript* to:
+
+#+ATTR_REVEAL: :frag (appear)
+ * Store and query /Single Page Application's/ /State/
+ * Statically generate site from /Knowledge Base/ on *DataScript*
+
 * Summary
 
 I want to inspire people to:
 
 #+ATTR_REVEAL: :frag (appear)
  * Consider /ideas/ *Datomic* based on
- * Learn *Datomic* and *Datalog*
- * Use *Datomic* and *DataScript* for /pet projects/ and /production/
- * Implement /Open Source/ *Datomic* for *JVM* and *Erlang BEAM*
- * Develop *job market* without /incidental complexity/
+ * Learn *Datomic* or *XTDB* and *Datalog*
+ * Use *Datomic*, *XTDB* and *DataScript* for /pet projects/ and ambitious /production/
+ * Develop *job market* without data related /incidental complexity/
  * Quit tolerate unnecessary /incidental complexity/
 
 * Learn *Datomic*
@@ -408,6 +411,11 @@ Articles by Carin Meyer [[http://gigasquidsoftware.com/blog/2015/08/15/conversat
 #+ATTR_REVEAL: :frag roll-in
 Great [[http://blog.datomic.com/][Datomic Blog]] and [[http://docs.datomic.com/tutorial.html][Documentation]]
 
+* Learn *XTDB*
+
+#+ATTR_REVEAL: :frag roll-in
+https://nextjournal.com/xtdb-tutorial/start
+  
 * Acknowledgments
 
 *Николай Рыжиков* - за знакомство с /Datomic/ и /Clojure/ [[https://plus.google.com/u/0/+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9%D0%A0%D1%8B%D0%B6%D0%B8%D0%BA%D0%BE%D0%B2/posts/br5A7HMEXY5][в 2013]], знакомство с [[https://github.com/hakimel/reveal.js/][Reveal.js]] и название доклада
@@ -435,3 +443,6 @@ Great [[http://blog.datomic.com/][Datomic Blog]] and [[http://docs.datomic.com/t
 * Thanks
 
 * *Questions* and *Additions*
+
+EXTRA slides to remove of place in appropriate place :)
+  
