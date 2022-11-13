@@ -446,6 +446,3 @@ https://nextjournal.com/xtdb-tutorial/start
 * Thanks
 
 * *Questions* and *Additions*
-
-EXTRA slides to remove of place in appropriate place :)
-  
