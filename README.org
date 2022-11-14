@@ -256,6 +256,7 @@ Example from [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-d
  * Lookup /indexes/ directly for speed
  * Graph database
  * Fulltext search
+ * InMemory storage for "UNIT" tests!!!
 
 * *XTDB* /Superpowers/
 
