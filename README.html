@@ -28,12 +28,16 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h2 class="author">alexpetrov</h2><p class="date">Created: 2022-11-14 Пн 13:20</p>
+<h2 class="author">alexpetrov</h2><p class="date">Created: 2022-11-14 Пн 14:27</p>
 </section>
 
 <section>
-<section id="slide-org05f7004">
-<h2 id="org05f7004"><i>Факты</i> про <b>Datomic</b> и <b>XTDB</b></h2>
+<section id="slide-org6057502">
+<h2 id="org6057502"><i>Факты</i> про <b>Datomic</b> и <b>XTDB</b></h2>
+<p>
+Иммутабельные БД общего назначения
+</p>
+
 <p>
 16 November 2022
 </p>
@@ -41,8 +45,8 @@
 </section>
 </section>
 <section>
-<section id="slide-orgde11560">
-<h3 id="orgde11560"><i>Факты</i> про <b>Datomic</b> и <b>XTDB</b></h3>
+<section id="slide-org8b2e3c0">
+<h3 id="org8b2e3c0"><i>Факты</i> про <b>Datomic</b> и <b>XTDB</b></h3>
 <p class="fragment roll-in">
 <b>Факт №1</b>
 </p>
@@ -62,8 +66,8 @@
 </section>
 </section>
 <section>
-<section id="slide-org3f0fed6">
-<h2 id="org3f0fed6">About me</h2>
+<section id="slide-org7054499">
+<h2 id="org7054499">About me</h2>
 <p class="fragment roll-in">
 <b>Alexander Petrov</b> (a.k.a Lysenko)
 </p>
@@ -87,8 +91,8 @@
 </section>
 </section>
 <section>
-<section id="slide-orgf4e01e3">
-<h2 id="orgf4e01e3">Modeling</h2>
+<section id="slide-orgff95c62">
+<h2 id="orgff95c62">Modeling</h2>
 <p class="fragment roll-in">
 What if we represent part of <i>the world</i> being digitized as a set of <i>situations</i>?
 </p>
@@ -147,8 +151,8 @@ Set of states in the world, that are consistent with each other at a particular 
 </section>
 </section>
 <section>
-<section id="slide-org24487a1">
-<h3 id="org24487a1">History of temporal databases</h3>
+<section id="slide-org7414182">
+<h3 id="org7414182">History of temporal databases</h3>
 <p>
 The <i>Idea</i> of simulating <i>Time</i> along with <i>Process</i> and <i>States</i> appeared in the paper:
 </p>
@@ -181,8 +185,8 @@ Datomic реализует хранение ситуаций в виде тра�
 </section>
 </section>
 <section>
-<section id="slide-org575b47f">
-<h3 id="org575b47f"><b>Facts</b> Example</h3>
+<section id="slide-org7d06c77">
+<h3 id="org7d06c77"><b>Facts</b> Example</h3>
 <p class="fragment roll-in">
 As of <b>1979</b> Great Guitar Player <a href="https://en.wikipedia.org/wiki/Robben_Ford" class="fragment roll-in">Robben Ford</a> plays in <i>Yellowjackets</i>
 </p>
@@ -261,8 +265,8 @@ Then as of <b>1986</b> he plays in <i>Miles Davis's Band</i>
 </section>
 </section>
 <section>
-<section id="slide-orge06819f">
-<h3 id="orge06819f">Immutability</h3>
+<section id="slide-org810ea7b">
+<h3 id="org810ea7b">Immutability</h3>
 <p class="fragment roll-in">
 Imagine <a href="https://en.wikipedia.org/wiki/General_ledger" class="fragment roll-in">General Ledger</a>
 </p>
@@ -290,8 +294,8 @@ Now these <b>space</b> <b>restrictions</b> are not relevant anymore
 </section>
 </section>
 <section>
-<section id="slide-org8979987">
-<h3 id="org8979987"><b>Facts</b> vs <b>Places</b></h3>
+<section id="slide-org6b72722">
+<h3 id="org6b72722"><b>Facts</b> vs <b>Places</b></h3>
 <p>
 Fred lives on "Spring St."
 </p>
@@ -324,8 +328,8 @@ Fred lives on "Spring St."
 </section>
 </section>
 <section>
-<section id="slide-org7853f2f">
-<h3 id="org7853f2f"><b>Facts</b> vs <b>Places</b></h3>
+<section id="slide-org40d4a09">
+<h3 id="org40d4a09"><b>Facts</b> vs <b>Places</b></h3>
 <p>
 <b>Place</b> oriented storage
 </p>
@@ -362,8 +366,8 @@ Now we've lost information about Fred ever lived on "Spring St."
 </section>
 </section>
 <section>
-<section id="slide-org10b9fea">
-<h3 id="org10b9fea"><b>Facts</b> vs <b>Places</b></h3>
+<section id="slide-org9f16734">
+<h3 id="org9f16734"><b>Facts</b> vs <b>Places</b></h3>
 <p>
 <b>Place</b> oriented storage
 </p>
@@ -444,8 +448,8 @@ Now we've lost information about Fred ever lived on "Spring St."
 </section>
 </section>
 <section>
-<section id="slide-org48b9d45">
-<h2 id="org48b9d45"><i>Simple</i> Architecture</h2>
+<section id="slide-org4f9fdba">
+<h2 id="org4f9fdba"><i>Simple</i> Architecture</h2>
 <pre class="example">
 +----------------------------------------------------------------------------+
 | +------------------------------------------------------------------------+ |
@@ -484,8 +488,8 @@ Architecture <a href="http://docs.datomic.com/architecture.html">Overview</a>
 </section>
 </section>
 <section>
-<section id="slide-orga85a88c">
-<h2 id="orga85a88c">Declarative Logic Programming Language <i>Datalog</i></h2>
+<section id="slide-org5c10e96">
+<h2 id="org5c10e96">Declarative Logic Programming Language <i>Datalog</i></h2>
 <p class="fragment roll-in">
 1977 <a href="http://en.wikipedia.org/wiki/Datalog" class="fragment roll-in">Datalog</a> was created
 </p>
@@ -497,8 +501,8 @@ Syntactically it is a subset of <b>Prolog</b>
 </section>
 </section>
 <section>
-<section id="slide-orgd166fee">
-<h3 id="orgd166fee">Trivial Query Example</h3>
+<section id="slide-org80c14be">
+<h3 id="org80c14be">Trivial Query Example</h3>
 <p>
 Pets shelter database
 </p>
@@ -523,8 +527,8 @@ Example from <a href="http://gigasquidsoftware.com/blog/2015/08/15/conversations
 </section>
 </section>
 <section>
-<section id="slide-org26e612a">
-<h2 id="org26e612a"><b>Datomic</b> <i>Superpowers</i></h2>
+<section id="slide-org35d463c">
+<h2 id="org35d463c"><b>Datomic</b> <i>Superpowers</i></h2>
 <ul>
 <li class="fragment appear">Query <i>consistent</i> database value at <i>any moment</i> in time</li>
 <li class="fragment appear">Query <i>historic</i> data</li>
@@ -542,8 +546,8 @@ Example from <a href="http://gigasquidsoftware.com/blog/2015/08/15/conversations
 </section>
 </section>
 <section>
-<section id="slide-org49bb5cb">
-<h2 id="org49bb5cb"><b>XTDB</b> <i>Superpowers</i></h2>
+<section id="slide-orgf71e422">
+<h2 id="orgf71e422"><b>XTDB</b> <i>Superpowers</i></h2>
 <ul>
 <li class="fragment appear">Bitemporal quieries on transaction time and valid time</li>
 <li class="fragment appear">Schema on read, schemaless on write</li>
@@ -556,8 +560,8 @@ Example from <a href="http://gigasquidsoftware.com/blog/2015/08/15/conversations
 </section>
 </section>
 <section>
-<section id="slide-org484d117">
-<h2 id="org484d117"><i>Incidental complexity</i> sources</h2>
+<section id="slide-org1aea0e7">
+<h2 id="org1aea0e7"><i>Incidental complexity</i> sources</h2>
 <ul>
 <li class="fragment appear">Data <i>Persistence</i></li>
 <li class="fragment appear">Cache Invalidation</li>
@@ -572,8 +576,8 @@ Example from <a href="http://gigasquidsoftware.com/blog/2015/08/15/conversations
 </section>
 </section>
 <section>
-<section id="slide-orgdbbf289">
-<h3 id="orgdbbf289"><i>Disease</i> -&gt; <b>Datomic</b> <i>Treatment</i></h3>
+<section id="slide-org214697c">
+<h3 id="org214697c"><i>Disease</i> -&gt; <b>Datomic</b> <i>Treatment</i></h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="fragment roll-in">
 
 
@@ -655,15 +659,15 @@ SingleThreaded Transactor всё время тратит на запись да�
 </section>
 </section>
 <section>
-<section id="slide-orgbf61daf">
-<h2 id="orgbf61daf">Why is it worth investing</h2>
-<div class="outline-text-2" id="text-orgbf61daf">
+<section id="slide-org5ac72f1">
+<h2 id="org5ac72f1">Why is it worth investing</h2>
+<div class="outline-text-2" id="text-org5ac72f1">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org994fb3a">
-<h3 id="org994fb3a"><b>Datomic</b> reflects the way you think of information</h3>
+<section id="slide-org07530b2">
+<h3 id="org07530b2"><b>Datomic</b> reflects the way you think of information</h3>
 <p class="fragment (appear)">
 That's why it is the best choice to implement your own ideas and projects.
 </p>
@@ -683,8 +687,8 @@ In fact you have <a href="https://martinfowler.com/eaaDev/EventSourcing.html" cl
 </section>
 </section>
 <section>
-<section id="slide-org42e7d87">
-<h3 id="org42e7d87"><b>Datomic</b> saves all historic data</h3>
+<section id="slide-orgb45ff9a">
+<h3 id="orgb45ff9a"><b>Datomic</b> saves all historic data</h3>
 <p class="fragment (appear)">
 If <i>data</i> worth saving, all <i>historic data</i> worth saving as well.
 </p>
@@ -700,8 +704,8 @@ You will do it anyway in <b>OLAP</b> database.
 </section>
 </section>
 <section>
-<section id="slide-orge2d0685">
-<h3 id="orge2d0685"><b>Datomic</b> downloads hot dataset in memory</h3>
+<section id="slide-org503a80b">
+<h3 id="org503a80b"><b>Datomic</b> downloads hot dataset in memory</h3>
 <p class="fragment (appear)">
 Any business application downloads hot dataset in memory
 </p>
@@ -713,8 +717,8 @@ But <b>Datomic</b> doing it smarter, giving you a lot of benefits
 </section>
 </section>
 <section>
-<section id="slide-orgf84b06c">
-<h3 id="orgf84b06c"><b>Datomic</b> is a proprietary software</h3>
+<section id="slide-orgb702f1e">
+<h3 id="orgb702f1e"><b>Datomic</b> is a proprietary software</h3>
 <p class="fragment (appear)">
 And always gonna <a href="https://soundcloud.com/defn-771544745/23-the-right-honourable-stuart-halloway" class="fragment (appear)">be closed source</a>
 </p>
@@ -742,8 +746,8 @@ Or consider using <b>XTDB</b>
 </section>
 </section>
 <section>
-<section id="slide-orge60ba00">
-<h2 id="orge60ba00"><b>Datomic</b> for non <b>Clojure</b></h2>
+<section id="slide-org98f195d">
+<h2 id="org98f195d"><b>Datomic</b> for non <b>Clojure</b></h2>
 <p class="fragment (appear)">
 Even thogh <b>Clojure</b> language was created to build <b>Datomic</b>
 </p>
@@ -759,8 +763,8 @@ Non <b>JVM</b> languages supported via <b>REST API</b>
 </section>
 </section>
 <section>
-<section id="slide-org8e5fe28">
-<h2 id="org8e5fe28"><b>Datalog</b> is <i>orthogonal</i> to <b>facts</b> model</h2>
+<section id="slide-org725bd21">
+<h2 id="org725bd21"><b>Datalog</b> is <i>orthogonal</i> to <b>facts</b> model</h2>
 <p class="fragment roll-in">
 <b>Datalog</b> is applicable for any <i>structured data</i> processing.
 </p>
@@ -776,8 +780,8 @@ If you don't need history and only need to make requests for application state y
 </section>
 </section>
 <section>
-<section id="slide-org492d445">
-<h3 id="org492d445">Some <b>DataScript</b> Use Cases</h3>
+<section id="slide-orgd8c3091">
+<h3 id="orgd8c3091">Some <b>DataScript</b> Use Cases</h3>
 <p class="fragment roll-in">
 For example, you can use <b>DataScript</b> to:
 </p>
@@ -791,8 +795,8 @@ For example, you can use <b>DataScript</b> to:
 </section>
 </section>
 <section>
-<section id="slide-orgce08297">
-<h2 id="orgce08297">Summary</h2>
+<section id="slide-orgdf1af0e">
+<h2 id="orgdf1af0e">Summary</h2>
 <p>
 I want to inspire people to:
 </p>
@@ -809,8 +813,8 @@ I want to inspire people to:
 </section>
 </section>
 <section>
-<section id="slide-orga23af1d">
-<h2 id="orga23af1d">Learn <b>Datomic</b></h2>
+<section id="slide-org8b974e5">
+<h2 id="org8b974e5">Learn <b>Datomic</b></h2>
 <p class="fragment roll-in">
 Videos from <a href="http://clojurecourse.by/" class="fragment roll-in">ClojureCourse.by</a> by <a href="https://github.com/tonsky">Nikita Prokopov</a>
 </p>
@@ -830,8 +834,8 @@ Great <a href="http://blog.datomic.com/" class="fragment roll-in">Datomic Blog</
 </section>
 </section>
 <section>
-<section id="slide-org09c3269">
-<h2 id="org09c3269">Learn <b>XTDB</b></h2>
+<section id="slide-org98b20c0">
+<h2 id="org98b20c0">Learn <b>XTDB</b></h2>
 <p class="fragment roll-in">
 <a href="https://nextjournal.com/xtdb-tutorial/start" class="fragment roll-in">https://nextjournal.com/xtdb-tutorial/start</a>
 </p>
@@ -839,8 +843,8 @@ Great <a href="http://blog.datomic.com/" class="fragment roll-in">Datomic Blog</
 </section>
 </section>
 <section>
-<section id="slide-orgdd882f0">
-<h2 id="orgdd882f0">Acknowledgments</h2>
+<section id="slide-orge4ac7c6">
+<h2 id="orge4ac7c6">Acknowledgments</h2>
 <p>
 <b>Николай Рыжиков</b> - за знакомство с <i>Datomic</i> и <i>Clojure</i> <a href="https://plus.google.com/u/0/+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9%D0%A0%D1%8B%D0%B6%D0%B8%D0%BA%D0%BE%D0%B2/posts/br5A7HMEXY5">в 2013</a>, знакомство с <a href="https://github.com/hakimel/reveal.js/">Reveal.js</a> и название доклада
 </p>
@@ -868,8 +872,8 @@ Great <a href="http://blog.datomic.com/" class="fragment roll-in">Datomic Blog</
 </section>
 </section>
 <section>
-<section id="slide-org708ab4c">
-<h2 id="org708ab4c">Links</h2>
+<section id="slide-org06bfd8a">
+<h2 id="org06bfd8a">Links</h2>
 <p>
 <a href="https://soundcloud.com/defn-771544745/23-the-right-honourable-stuart-halloway">Defn Episode 23</a> with <b>Stuart Halloway</b> about history of <i>Cognitect</i> and <i>Datomic</i> past and future
 </p>
@@ -889,14 +893,14 @@ Great <a href="http://blog.datomic.com/" class="fragment roll-in">Datomic Blog</
 </section>
 </section>
 <section>
-<section id="slide-org6ffec95">
-<h2 id="org6ffec95">Thanks</h2>
+<section id="slide-orgc9f0c35">
+<h2 id="orgc9f0c35">Thanks</h2>
 
 </section>
 </section>
 <section>
-<section id="slide-orgaa2fb86">
-<h2 id="orgaa2fb86"><b>Questions</b> and <b>Additions</b></h2>
+<section id="slide-org1adb94f">
+<h2 id="org1adb94f"><b>Questions</b> and <b>Additions</b></h2>
 </section>
 </section>
 </div>
