@@ -261,10 +261,11 @@ Example from [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-d
 * *XTDB* /Superpowers/
 
 #+ATTR_REVEAL: :frag (appear)
- * Bitemporal quieries on transaction time or valid time
+ * Bitemporal quieries on transaction time and valid time
  * Schema on read, schemaless on write
  * EDN database
  * Open Source (MIT Licenced)
+ * Distributed with all data on each node
   
 * /Incidental complexity/ sources
 
