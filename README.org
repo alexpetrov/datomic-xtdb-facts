@@ -86,9 +86,9 @@ Source talk: [[https://www.youtube.com/watch?v=fhOHn9TClXY&feature=youtu.be&t=19
 Set of states in the world, that are consistent with each other at a particular time
 #+END_NOTES
 
-** History
+** History of temporal databases
 
-The /Idea/ of simulating /Time/ along With /Process/ and /States/ appeared in the paper:
+The /Idea/ of simulating /Time/ along with /Process/ and /States/ appeared in the paper:
 
 #+ATTR_REVEAL: :frag roll-in
     *1963* /Jonh McCarthy/ [[http://www.dtic.mil/dtic/tr/fulltext/u2/785031.pdf][Situations, Actions and Causal Laws]]
@@ -98,6 +98,9 @@ The /Idea/ of simulating /Time/ along With /Process/ and /States/ appeared in th
 
 #+ATTR_REVEAL: :frag roll-in
     *2012* /Stuart Halloway/ implemented [[https://github.com/Datomic/simulant/wiki][Simulant]] library to [[https://www.infoq.com/presentations/Simulation-Testing][simulation test]] *Datomic* based systems
+
+#+ATTR_REVEAL: :frag roll-in
+    *2018-03* /JUXT/ compny created /XTDB/ bitemporal open source /EDN/ database
 
 #+BEGIN_NOTES
 Datomic реализует хранение ситуаций в виде транзакций, а Simulant проигрывает эти ситуации имитируя время с разной скоростью.
