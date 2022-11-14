@@ -255,6 +255,7 @@ Example from [[http://gigasquidsoftware.com/blog/2015/08/15/conversations-with-d
  * Listen to /all changes/ in the system and /react/
  * Lookup /indexes/ directly for speed
  * Graph database
+ * Fulltext search
 
 * *XTDB* /Superpowers/
 
